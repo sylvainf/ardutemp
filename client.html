@@ -1,0 +1,37 @@
+<title>JQuery & pyjsonrpc demo</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+setInterval(function() {
+      callServer();
+}, 2000);
+
+
+function callServer() {
+ var url = "http://localhost:8081/jsonrpc";
+
+ var request = {};
+ request.method = "temp";
+
+ request.params = [];
+ request.id = 1; // RPC server echo this id again.
+ request.jsonrpc = "2.0";
+ $('#temp').html("");
+
+   function displayResult(response) {
+    if (response.result)
+     $('#temp').html(response.result);
+    else if (response.error)
+     alert("error: " + response.error.message);
+    else
+     alert("Unknown response");
+   };
+
+ $.post(url, JSON.stringify(request), displayResult, "json");
+}
+</script>
+
+</head>
+<body>
+Temperature : <span id="temp"></span>
+</body>
+</html>
