@@ -1,17 +1,21 @@
 import pyjsonrpc
+import readtemp
 
 
-def add(a, b):
-    """Test function"""
-    return a + b
 
-def echo(param):
-    print "from client:", param
-    return param
+#
+# Return a temperature for a given sensorId
+#
+
+#def temp_sensor(sensorId):
+
+
+#
+# Return a list of sensorId and temperature
+#
 
 def temp():
-    """Test function"""
-    return 'toto'
+    return readtemp.readtemp()
 
 class RequestHandler(pyjsonrpc.HttpRequestHandler):
     # Register public JSON-RPC methods

@@ -6,6 +6,8 @@ import time
 path = '/dev/ttyUSB0'
 
 def readtemp():
+    resultats = []
+    nb_sensor = 3
     ser = serial.Serial(path, 9600)
 
 
@@ -13,9 +15,10 @@ def readtemp():
     # r pour lire, n pour nombre
     ser.write(b'r\n');
 
-    print ser.readline(),
-    print ser.readline(),
-    print ser.readline()
+    for _ in range(nb_sensor):
+        resultats.append(ser.readline().split(';'))
+
+    return resultats
 
 if __name__ == "__main__":
-    readtemp
+    print readtemp()
