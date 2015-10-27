@@ -2,25 +2,19 @@ import pyjsonrpc
 import readtemp
 
 
-
-#
-# Return a temperature for a given sensorId
-#
-
-#def temp_sensor(sensorId):
-
-
-#
-# Return a list of sensorId and temperature
-#
-
+# Return a row list of sensorId and temperature
 def temp():
-    return readtemp.readtemp()
+    return str(readtemp.readTemp())
+
+# Return the number of sensors
+def number():
+    return readtemp.readNumber()
 
 class RequestHandler(pyjsonrpc.HttpRequestHandler):
     # Register public JSON-RPC methods
     methods = {
         "temp": temp,
+        "number": number,
     }
 
     def end_headers(self):

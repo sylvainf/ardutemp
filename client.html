@@ -1,4 +1,3 @@
-<title>JQuery & pyjsonrpc demo</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 setInterval(function() {
@@ -10,12 +9,11 @@ function callServer() {
  var url = "http://localhost:8081/jsonrpc";
 
  var request = {};
- request.method = "temp";
-
+ request.method = "temp"
  request.params = [];
  request.id = 1; // RPC server echo this id again.
  request.jsonrpc = "2.0";
- $('#temp').html("");
+ //$('#temp').html("");
 
    function displayResult(response) {
     if (response.result)

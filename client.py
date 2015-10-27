@@ -8,3 +8,4 @@ http_client = pyjsonrpc.HttpClient(
 
 
 print http_client.temp()
+print http_client.number()
