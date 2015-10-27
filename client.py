@@ -9,3 +9,4 @@ http_client = pyjsonrpc.HttpClient(
 
 print http_client.temp()
 print http_client.number()
+print http_client.sensorTemp("28FF5B637115025E")

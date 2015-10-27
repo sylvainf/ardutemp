@@ -1,20 +1,25 @@
 import pyjsonrpc
 import readtemp
 
+ser=readtemp.init()  #return a serial object
 
 # Return a row list of sensorId and temperature
 def temp():
-    return str(readtemp.readTemp())
+    return str(readtemp.readTemp(ser))
 
 # Return the number of sensors
 def number():
-    return readtemp.readNumber()
+    return readtemp.readNumber(ser)
+
+def sensorTemp(sensorId):
+    return readtemp.sensorTemp(ser,sensorId)
 
 class RequestHandler(pyjsonrpc.HttpRequestHandler):
     # Register public JSON-RPC methods
     methods = {
         "temp": temp,
         "number": number,
+        'sensorTemp': sensorTemp
     }
 
     def end_headers(self):
@@ -33,6 +38,8 @@ http_server = pyjsonrpc.ThreadingHttpServer(
     server_address = addr,
     RequestHandlerClass = RequestHandler
 )
+
+
 print "Starting HTTP server ..."
 print "Listening: ", addr
 http_server.serve_forever()
