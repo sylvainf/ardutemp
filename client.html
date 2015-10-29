@@ -1,35 +1,73 @@
+<html>
+  <head>
+    <title>
+        Demo Temperatures
+    </title>
+
+<style media="screen">
+table {
+  color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  width: 640px;
+  border-collapse:
+  collapse; border-spacing: 0;
+}
+
+td, th {
+  border: 1px solid transparent; /* No more visible border */
+  height: 30px;
+  transition: all 0.3s;  /* Simple transition for hover effect */
+}
+
+th {
+  background: #DFDFDF;  /* Darken header a bit */
+  font-weight: bold;
+}
+
+td {
+  background: #FAFAFA;
+  text-align: center;
+}
+
+tr:nth-child(even) td { background: #F1F1F1; }
+
+tr:nth-child(odd) td { background: #FEFEFE; }
+
+</style>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+
 setInterval(function() {
       callServer();
 }, 2000);
 
 
 function callServer() {
- var url = "http://localhost:8081/jsonrpc";
+ var url = "http://localhost:5000/api/";
 
- var request = {};
- request.method = "temp"
- request.params = [];
- request.id = 1; // RPC server echo this id again.
- request.jsonrpc = "2.0";
- //$('#temp').html("");
 
    function displayResult(response) {
-    if (response.result)
-     $('#temp').html(response.result);
-    else if (response.error)
+    if (response) {
+      var tbl="<table><tr><th>Location</th><th>Sensor ID</th><th>Temperature</th></tr>";
+      for(var i in response.sensors) {
+          tbl=tbl+ "<tr><td>"+response.locations[i]+"</td><td>" + i + "</td><td>" + response.sensors[i] + "</td></tr>";
+          console.log(i + response.sensors[i]);
+      }
+      tbl=tbl+"</table>";
+     $('#temp').html(tbl);
+
+   } else if (response.error)
      alert("error: " + response.error.message);
-    else
-     alert("Unknown response");
    };
 
- $.post(url, JSON.stringify(request), displayResult, "json");
+
+   $.get(url, displayResult, "json");
 }
 </script>
 
 </head>
 <body>
-Temperature : <span id="temp"></span>
+Temperatures : <span id="temp"></span>
 </body>
 </html>
