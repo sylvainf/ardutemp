@@ -1,6 +1,6 @@
 # Ardutemp project
 
-## An Arduino and DS18X20 based temperature network with python REST API
+## An Arduino and DS18X20 based temperature sensor network with python REST API
 
 The Arduino firmware is based on the Dallas Temperature Library https://milesburton.com/Dallas_Temperature_Control_Library
 
