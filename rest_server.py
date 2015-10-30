@@ -1,9 +1,8 @@
 #!/usr/bin/python
 
-from flask import Flask, jsonify, abort
+from flask import Flask, jsonify, abort, make_response, request, current_app, send_from_directory
 import readtemp
 from datetime import timedelta
-from flask import make_response, request, current_app
 from functools import update_wrapper
 import pickle
 
@@ -90,6 +89,10 @@ def create_location():
     locations[request.json['id']]=request.json['location']
     pickle.dump( locations, open( "sensors.conf", "wb" ) )
     return jsonify({}), 201
+
+@app.route('/', methods=['GET'])
+def html_client():
+    return send_from_directory('.', 'client.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

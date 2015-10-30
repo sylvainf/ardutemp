@@ -20,8 +20,8 @@ https://github.com/milesburton/Arduino-Temperature-Control-Library
 
 
 # Usage
-- Try  ```readtemp.py``` to read sensors locally
+- Try ```readtemp.py``` to read sensors locally
 - Connect to http://localhost:5000/api/ to check sensors status
-- Read a sensor http://localhost:5000/api/10E82688000800A4
+- Read a specific sensor http://localhost:5000/api/10E82688000800A4
+- Read sensor dynamically with html/js web page : http://localhost:5000
 - Add new locations ```curl -i -H "Content-Type: application/json" -X POST -d '{"id":"10E82688000800A4", "location": "Rack 3.9 back"}' http://localhost:5000/api/locations/```
-- You can use the html/js example to read sensor dynamically with a web browser
