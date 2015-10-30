@@ -1,23 +1,22 @@
 # Ardutemp project
 
-## An arduino and DS18X20 based temperature network with REST API
+## An Arduino and DS18X20 based temperature network with python REST API
 
-The arduino firmware is based on the Dallas Temperature Library https://milesburton.com/Dallas_Temperature_Control_Library
+The Arduino firmware is based on the Dallas Temperature Library https://milesburton.com/Dallas_Temperature_Control_Library
 
 # The hardware
-The firmware is derivated from the Dallas Temperature Library main example
-The arduino firmware is based on the
+- 1-wire ds18X20 sensors are connected to digital input 2 of Arduino board (dont forget the pull-up resistor). You can plug many sensors on the same bus. For more informations : http://playground.arduino.cc/Learning/OneWire
+
+- The firmware is derivated from the Dallas Temperature Library main example
 https://github.com/milesburton/Arduino-Temperature-Control-Library
-- Install the the TLC library from github and compile the firmware in the arduino environment.
-- Flash firmware.ino to your arduino compatible board
-- Plug your 1-wire sensors to your board to digital input 2 (dont forget the pull-up resistor) (for more informations : http://playground.arduino.cc/Learning/OneWire)
+- It is supposed to work on almost all Arduino compatible board.
 
 # Installation of the python based REST server
-- check your permission to access to serial device (typically add the user to dialout group)
+- check your permission to access serial devices (typically add the user to dialout group)
 - install python modules
 ```pip install flask datetime functools serial```
 - delete the example ```sensors.conf``` file
-- start rest_server.py
+- start ```rest_server.py```
 
 
 # Usage
